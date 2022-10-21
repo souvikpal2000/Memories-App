@@ -1,0 +1,14 @@
+.footContainer{
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+      align-items: center;
+    background-color: rgb(13, 10, 24);
+}
+.footContainer{
+    margin-top: auto;
+}
+p{
+    margin: 0rem !important;
+    color: rgb(156, 200, 252);
+}

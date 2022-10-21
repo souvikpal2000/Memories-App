@@ -1,0 +1,18 @@
+#menu{
+    text-decoration: none;
+    color: rgb(156, 200, 252);
+}
+.brandImage{
+    width: 3rem;
+}
+.navContainer{
+    background-color: rgb(13, 10, 24);
+}
+.toggler{
+    width: 4rem !important;
+    background-color: rgb(156, 200, 252) !important;
+    color: white !important
+}
+.active{
+    color: white !important;
+}
