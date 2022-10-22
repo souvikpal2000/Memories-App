@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
 #menu{
     text-decoration: none;
     color: rgb(156, 200, 252);
+    font-family: 'Lato', sans-serif;
 }
 .brandImage{
     width: 3rem;

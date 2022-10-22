@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
 .footContainer{
     padding: 1.5rem;
     display: flex;
@@ -11,4 +13,5 @@
 p{
     margin: 0rem !important;
     color: rgb(156, 200, 252);
+    font-family: 'Lato', sans-serif;
 }
