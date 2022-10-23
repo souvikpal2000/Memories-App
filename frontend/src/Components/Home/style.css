@@ -1,6 +1,6 @@
 .homeContainer{
     margin-top: auto;
-    font-family: 'Piazzolla';
+    font-family: 'Piazzolla', serif;
 }
 .carousel-item img{
     width: 32rem !important;
@@ -45,7 +45,7 @@
         padding: 0.5rem;
     }
     .main-header-right{
-        margin-top: 5rem !important;
+        margin-top: 2rem !important;
     }
     .carousel-item img{
         width: 22rem !important;

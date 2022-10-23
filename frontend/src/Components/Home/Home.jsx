@@ -8,6 +8,7 @@ import CarouselSecondImg from '../../images/carousel02.jpg';
 import CarouselThirdImg from '../../images/carousel03.jpg';
 import CarouselForthImg from '../../images/carousel04.jpg';
 import CarouselFifthImg from '../../images/carousel05.jpg';
+import CarouselSixthImg from "../../images/carousel06.jpg";
 import "./style.css";
 
 const Home = () => {
@@ -37,6 +38,9 @@ const Home = () => {
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img className="d-block w-100" src={CarouselFifthImg} alt="Third slide" />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img className="d-block w-100" src={CarouselSixthImg} alt="Third slide" />
                             </Carousel.Item>
                         </Carousel>
                     </Col>
