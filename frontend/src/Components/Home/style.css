@@ -4,6 +4,7 @@
 }
 .carousel-item img{
     width: 32rem !important;
+    pointer-events: none;
 }
 .main-header-left, .main-header-right{
     display: flex;
@@ -39,7 +40,6 @@
 .textColor{
     color: #0097e6;
 }
-
 @media (max-width: 768px) {
     .homeContainer{
         padding: 0.5rem;
