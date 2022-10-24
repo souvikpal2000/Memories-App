@@ -4,19 +4,18 @@
 }
 .signupImg{
     pointer-events: none;
+    width: 38rem;
 }
-.main-header-left, .main-header-right{
+.signup-left, .signup-right{
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-.main-header-right{
     align-items: center;
 }
 .inputFields{
     padding: 0.5rem 0 0.5rem 0;
 }
-.main-header-right button{
+.signup-right button{
     border: none;
     padding: 0.8rem 1.8rem;
     font-size: 1rem;
@@ -24,7 +23,7 @@
     text-transform: uppercase;
     box-shadow: 0 8px 6px -6px #000;
 }
-.main-header-right button:hover{
+.signup-right button:hover{
     box-shadow: 0 8px 6px -6px #0097e6;
 }
 .button{
@@ -43,11 +42,27 @@
 .atTheRate{
     font-weight: bold;
 }
+
+@media (max-width: 991px) {
+    .signupImg{
+        width: 25rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .signupImg{
+        width: 20rem;
+    }
     .signupContainer{
         padding: 1rem 0 1rem 0;
     }
-    .main-header-right{
+    .signup-right{
         margin-top: 2rem !important;
+    }
+    .signupForm{
+        width: 95%;
+    }
+    .signup-right button{
+        padding: 0.5rem 1rem;
     }
 }

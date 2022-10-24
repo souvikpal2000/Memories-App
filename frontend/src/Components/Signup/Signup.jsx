@@ -28,7 +28,7 @@ const Signup = () => {
                 ...preValue,
                 [name]: {
                     show: !preValue[name].show,
-                    type: !preValue[name].show == true? "text" : "password"   
+                    type: !preValue[name].show === true? "text" : "password"   
                 }
             }
         })
@@ -38,11 +38,11 @@ const Signup = () => {
         <>
             <Container className="signupContainer">
                 <Row>
-                    <Col md={6} className="main-header-left">
+                    <Col md={6} className="signup-left">
                         <img src={SignupPic} alt="" className="signupImg"/>
                     </Col>
-                    <Col md={6} className="main-header-right">
-                        <Form>
+                    <Col md={6} className="signup-right">
+                        <Form className="signupForm">
                             <Form.Group>
                                 <Row className="inputFields">
                                     <Col md={6}>
@@ -94,7 +94,7 @@ const Signup = () => {
                                     </Col>
                                 </Row>
                                 <Row className="inputFields button">
-                                    <button>Submit</button>
+                                    <button>Signup</button>
                                 </Row>
                             </Form.Group>
                         </Form>

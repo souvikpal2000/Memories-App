@@ -15,3 +15,9 @@ p{
     color: rgb(156, 200, 252);
     font-family: 'Lato', sans-serif;
 }
+
+@media (max-width: 768px) {
+    p{
+        font-size: 0.9rem;
+    }
+}

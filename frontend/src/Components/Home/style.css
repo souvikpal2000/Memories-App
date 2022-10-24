@@ -40,15 +40,22 @@
 .textColor{
     color: #0097e6;
 }
+
+@media (max-width: 991px) {
+    .carousel-item img{
+        width: 25rem !important;
+    }
+}
+
 @media (max-width: 768px) {
     .homeContainer{
-        padding: 0.5rem;
+        padding: 1rem 0 1rem 0;
     }
     .main-header-right{
         margin-top: 2rem !important;
     }
     .carousel-item img{
-        width: 22rem !important;
+        width: 20rem !important;
     }
     .main-header-left p{
         font-size: 1.2rem;
