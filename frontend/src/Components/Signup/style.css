@@ -1,0 +1,53 @@
+.signupContainer{
+    margin-top: auto;
+    font-family: 'Piazzolla', serif;
+}
+.signupImg{
+    pointer-events: none;
+}
+.main-header-left, .main-header-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.main-header-right{
+    align-items: center;
+}
+.inputFields{
+    padding: 0.5rem 0 0.5rem 0;
+}
+.main-header-right button{
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    box-shadow: 0 8px 6px -6px #000;
+}
+.main-header-right button:hover{
+    box-shadow: 0 8px 6px -6px #0097e6;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputFields button{
+    width: 30%;
+    margin-top: 0.5rem;
+}
+.showPasswordIcon, .hidePasswordIcon{
+    width: 20px;
+    cursor: pointer;
+}
+.atTheRate{
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    .signupContainer{
+        padding: 1rem 0 1rem 0;
+    }
+    .main-header-right{
+        margin-top: 2rem !important;
+    }
+}
