@@ -49,7 +49,7 @@ const Signup = () => {
                                         <Form.Label>Full Name</Form.Label>
                                         <Form.Control type="text" name="fullName" required />
                                     </Col>
-                                    <Col md={6}>
+                                    <Col md={6} className="inputColumn">
                                         <Form.Label>Username</Form.Label>
                                         <InputGroup>
                                             <InputGroup.Text><span className="atTheRate">@</span></InputGroup.Text>

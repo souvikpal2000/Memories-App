@@ -4,7 +4,7 @@
 }
 .signupImg{
     pointer-events: none;
-    width: 38rem;
+    width: 35rem;
 }
 .signup-left, .signup-right{
     display: flex;
@@ -43,12 +43,6 @@
     font-weight: bold;
 }
 
-@media (max-width: 991px) {
-    .signupImg{
-        width: 25rem;
-    }
-}
-
 @media (max-width: 768px) {
     .signupImg{
         width: 20rem;
@@ -57,12 +51,27 @@
         padding: 1rem 0 1rem 0;
     }
     .signup-right{
-        margin-top: 2rem !important;
+        margin-top: 1rem !important;
     }
     .signupForm{
         width: 95%;
     }
     .signup-right button{
         padding: 0.5rem 1rem;
+    }
+    .inputColumn{
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .signupImg{
+        width: 21rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .signupImg{
+        width: 25rem;
     }
 }

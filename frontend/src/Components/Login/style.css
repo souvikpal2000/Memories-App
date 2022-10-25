@@ -42,12 +42,6 @@
     width: 79%;
 }
 
-@media (max-width: 991px) {
-    .loginImg{
-        width: 25rem;
-    }
-}
-
 @media (max-width: 768px) {
     .loginContainer{
         padding: 1rem 0 1rem 0;
@@ -58,7 +52,22 @@
     .loginForm{
         width: 95%;
     }
+    .login-right{
+        margin-top: 1rem !important;
+    }
     .login-right button{
         padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .loginImg{
+        width: 21rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .loginImg{
+        width: 25rem;
     }
 }
