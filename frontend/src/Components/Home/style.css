@@ -42,6 +42,12 @@
 }
 
 @media (max-width: 991px) {
+    .main-header-left p{
+        font-size: 1.2rem;
+    }
+    .main-header-left h1{
+        font-size: 1.6rem;
+    }
     .carousel-item img{
         width: 25rem !important;
     }
