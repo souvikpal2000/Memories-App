@@ -1,0 +1,40 @@
+.errorContainer{
+    margin-top: auto !important;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 0 3rem 0;
+}
+.errorContainer img{
+    pointer-events: none;
+}
+.goBack{
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    box-shadow: 0 8px 6px -6px #000;
+    text-decoration: none;
+    color: black;
+    background-color: #e9ecef;
+}
+.goBack:hover{
+    box-shadow: 0 8px 6px -6px #0097e6;
+    color: black;
+}
+.pageNotFndErrMsg{
+    font-family: 'Piazzolla', serif;
+    padding: 1rem 0 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .errorContainer{
+        padding: 12rem 0 12rem 0;
+    }
+    .errorContainer img{
+        width: 22rem;
+    }
+}
