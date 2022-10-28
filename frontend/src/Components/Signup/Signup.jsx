@@ -47,35 +47,28 @@ const Signup = () => {
         if(name === "password"){
             const pass = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
             if(value.match(pass)){
-                setPasswordValidation((preValue) => {
-                    return{
-                        ...preValue,
-                        [name]: "is-valid"
-                    }
+                setPasswordValidation({
+                    password: "is-valid",
+                    conPassword:    value !== userInfo.conPassword && userInfo.conPassword.length !== 0? "is-invalid" : 
+                                    value !== userInfo.conPassword && userInfo.conPassword.length === 0? "" : 
+                                    value === userInfo.conPassword && userInfo.conPassword.length !== 0? "is-valid" : null
                 });
             }else{
-                setPasswordValidation((preValue) => {
-                    return{
-                        ...preValue,
-                        [name]: value.length === 0? "" : "is-invalid"
-                    }
-                });
-
+                let conPasswordLength = userInfo.conPassword.length; 
                 if(value.length === 0){
+                    conPasswordLength = 0;
                     setUserInfo((preValue) => {
                         return{
                             ...preValue,
                             conPassword: ""
                         }
                     });
-                    setPasswordValidation((preValue) => {
-                        return{
-                            ...preValue,
-                            conPassword: ""
-                        }
-                    })
                 }
-            }
+                setPasswordValidation({
+                    password: value.length === 0? "" : "is-invalid",
+                    conPassword: (value !== userInfo.conPassword && conPasswordLength !== 0)? "is-invalid" : ""
+                })
+            } 
         }
 
         if(name === "conPassword"){
@@ -140,6 +133,10 @@ const Signup = () => {
         })
     }
 
+    const submitForm = async (e) => {
+        
+    }   
+
     return(
         <>
             <Container className="signupContainer">
@@ -154,7 +151,7 @@ const Signup = () => {
                                 <p>{alert.message}</p>
                             </Alert>
                         }
-                        <Form className="signupForm">
+                        <Form className="signupForm" onSubmit={submitForm}>
                             <Form.Group>
                                 <Row className="inputFields">
                                     <Col md={6}>
@@ -203,7 +200,7 @@ const Signup = () => {
                                     <Col md={12} className="fileInputField">
                                         <Form.Label>Profile Picture</Form.Label>
                                         <div className="fileDiv">
-                                            <FileBase64 name="profilePic" type="file" multiple={false} value={userInfo.profilePic.base64} onDone={setProfilePic} />
+                                            <FileBase64 name="profilePic" type="file" multiple={false} value={userInfo.profilePic.name} onDone={setProfilePic} />
                                         </div>
                                         {/* Checking whether FileBase64 is working or not */}
                                         {/* <img src={userInfo.profilePic.base64} alt={userInfo.profilePic.name}/> */}
