@@ -31,6 +31,7 @@ const Signup = () => {
         conPassword: "",
         profilePic: {
             name: "defaultprofilepic.jpg",
+            fileSize: 6275.25,
             base64: DefaultProfilePic
         }
     });
@@ -99,14 +100,26 @@ const Signup = () => {
 
     const setProfilePic = (filebase64) => {
         setAlert("");
+        
+        const n = filebase64.base64.length;
+        const x = filebase64.base64.endsWith("==") === true? 2 : filebase64.base64.endsWith("=") === true? 1 : 0;
+        const fileSize = (n * 0.75) - x; // File Size in bytes
 
         const fileType = ['image/jpeg', 'image/png'];
         if(fileType.includes(filebase64.type)){
+            if(fileSize > 10000000){ // File Upload limited upto 10mb
+                setAlert({
+                    type: "danger",
+                    message: "File Size must be less than 10mb"
+                });
+                return;
+            }
             setUserInfo((preValue) => {
                 return{
                     ...preValue,
                     profilePic: {
                         name: filebase64.name,
+                        fileSize: fileSize,
                         base64: filebase64.base64
                     }
                 }
@@ -134,7 +147,56 @@ const Signup = () => {
     }
 
     const submitForm = async (e) => {
-        
+        e.preventDefault();
+        if(userInfo.password !== userInfo.conPassword){
+            setAlert({
+                type: "danger",
+                message: "Password doesn't Match"
+            });
+            return;
+        }
+
+        try{
+            const res = await fetch("/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userInfo)
+            });
+            const data = await res.json();
+            if(data.success){
+                setAlert({
+                    type: "success",
+                    message: data.message
+                });
+                setUserInfo({
+                    fullName: "",
+                    userName: "",
+                    password: "",
+                    conPassword: "",
+                    profilePic: {
+                        name: "defaultprofilepic.jpg",
+                        fileSize: 6275.25, 
+                        base64: DefaultProfilePic
+                    }
+                });
+                setPasswordValidation({
+                    password: "",
+                    conPassword: ""
+                });
+            }else{
+                setAlert({
+                    type: "danger",
+                    message: data.message
+                });
+            }
+        }catch(err){
+            setAlert({
+                type: "danger",
+                message: "Error 503 : Service Unavailable"
+            });
+        }
     }   
 
     return(
