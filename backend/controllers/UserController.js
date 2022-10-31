@@ -23,7 +23,7 @@ const signupUser = async (req, res) => {
     }
 }
 
-const signinUser = async (req, res) => {
+const loginUser = async (req, res) => {
     try{
         const {userName, password} = req.body;
         const user = await Users.findOne({userName});
@@ -51,4 +51,4 @@ const authCheck = (req, res) => {
     res.status(200).json({success: true, message: "Authorized User"});
 }
 
-module.exports = {signupUser, signinUser, logoutUser, authCheck};
+module.exports = {signupUser, loginUser, logoutUser, authCheck};
