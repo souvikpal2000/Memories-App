@@ -1,8 +1,10 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 require("./db/connection");
 
 app.use(express.json({limit: '10mb'}));
+app.use(cookieParser());
 
 const Posts = require("./routers/posts");
 const Users = require("./routers/users");
