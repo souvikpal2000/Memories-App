@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Alert from 'react-bootstrap/Alert';
 import LoginImg from "../../images/login.jpg";
 import ShowPasswordIcon from "../../images/showPassword.png";
 import HidePasswordIcon from "../../images/hidePassword.png";
 import "./style.css";
-import { useState } from "react";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState({
@@ -16,12 +17,62 @@ const Login = () => {
         type: "password"
     });
 
+    const [loginInfo, setLoginInfo] = useState({
+        userName: "",
+        password: ""
+    });
+
+    const [alert, setAlert] = useState("");
+
+    const navigate = useNavigate();
+
     const changeVisibility = () => {
         setShowPassword({
             show: !showPassword.show,
             type: !showPassword.show === true? "text" : "password"
         })
     } 
+
+    const setInfo = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setLoginInfo((preValue) => {
+            return{
+                ...preValue,
+                [name]: value
+            }
+        });
+    }
+
+    const submitForm = async (e) => {
+        e.preventDefault();
+
+        try{
+            const res = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(loginInfo)
+            });
+    
+            const data = await res.json();
+    
+            if(data.success){
+                navigate("/");
+            }else{
+                setAlert({
+                    type: "danger",
+                    message: data.message
+                })
+            }
+        }catch(err){
+            setAlert({
+                type: "danger",
+                message: "Error 503 : Service Unavailable"
+            });
+        }
+    }
 
     return(
         <>
@@ -31,13 +82,19 @@ const Login = () => {
                         <img src={LoginImg} alt="" className="loginImg"/>
                     </Col>
                     <Col md={6} className="login-right">
-                        <Form className="loginForm">
+                        {   
+                            alert && 
+                            <Alert variant={alert.type} onClose={() => setAlert("")} dismissible>
+                                <p>{alert.message}</p>
+                            </Alert>
+                        }
+                        <Form className="loginForm" onSubmit={submitForm}>
                             <Row className="inputFields">
                                 <Col>
                                     <Form.Label>Username</Form.Label>
                                     <InputGroup>
                                         <InputGroup.Text><span className="atTheRate">@</span></InputGroup.Text>
-                                        <Form.Control type="text" name="userName" required />
+                                        <Form.Control type="text" name="userName" value={loginInfo.userName} onChange={setInfo} required />
                                     </InputGroup>
                                 </Col>
                             </Row>
@@ -45,7 +102,7 @@ const Login = () => {
                                 <Col md={12}>
                                     <Form.Label>Password</Form.Label>
                                     <InputGroup>
-                                        <Form.Control type={showPassword.type} name="password" required />
+                                        <Form.Control type={showPassword.type} name="password" value={loginInfo.password} onChange={setInfo} required />
                                         { showPassword.show === false?  
                                             <InputGroup.Text>
                                                 <img src={ShowPasswordIcon} className="showPasswordIcon" alt="ShowPasswordIcon" onClick={changeVisibility} />

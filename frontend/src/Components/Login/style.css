@@ -15,7 +15,7 @@
 .inputFields{
     padding: 0.5rem 0 0.5rem 0;
 }
-.login-right button{
+.loginForm button{
     border: none;
     padding: 0.8rem 1.8rem;
     font-size: 1rem;
@@ -23,7 +23,7 @@
     text-transform: uppercase;
     box-shadow: 0 8px 6px -6px #000;
 }
-.login-right button:hover{
+.loginForm button:hover{
     box-shadow: 0 8px 6px -6px #0097e6;
 }
 .button{
@@ -55,7 +55,7 @@
     .login-right{
         margin-top: 1rem !important;
     }
-    .login-right button{
+    .loginForm button{
         padding: 0.5rem 1rem;
     }
 }
