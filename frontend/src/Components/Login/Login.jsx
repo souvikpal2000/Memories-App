@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,6 +10,7 @@ import Alert from 'react-bootstrap/Alert';
 import LoginImg from "../../images/login.jpg";
 import ShowPasswordIcon from "../../images/showPassword.png";
 import HidePasswordIcon from "../../images/hidePassword.png";
+import { UserContext } from "../../App";
 import "./style.css";
 
 const Login = () => {
@@ -24,6 +26,7 @@ const Login = () => {
 
     const [alert, setAlert] = useState("");
 
+    const {dispatch} = useContext(UserContext);
     const navigate = useNavigate();
 
     const changeVisibility = () => {
@@ -44,6 +47,14 @@ const Login = () => {
         });
     }
 
+    const auth = () => {
+        if(Cookies.get("jwt")){
+            dispatch({type: "loggedIn"});
+        }else{
+            dispatch({type: "loggedOut"});
+        }
+    }
+
     const submitForm = async (e) => {
         e.preventDefault();
 
@@ -59,6 +70,7 @@ const Login = () => {
             const data = await res.json();
     
             if(data.success){
+                auth();
                 navigate("/");
             }else{
                 setAlert({

@@ -13,7 +13,7 @@ import "./style.css";
 
 const Home = () => {
     return(
-        <>
+        <>  
             <Container className="homeContainer">
                 <Row>
                     <Col md={6} xs={12} className="main-header-left">

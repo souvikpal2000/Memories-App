@@ -6,7 +6,7 @@ const getMemories = async (req, res) => {
         res.status(200).json(memories);
     }catch(err){
         console.log(err);
-        res.status(404).json(err);
+        res.status(500).json({sucess: false, message: "Internal Server Error"});
     }
 }
 
@@ -17,7 +17,8 @@ const createMemory = async (req, res) => {
         await Memories.save();
         res.status(201).json(newMemory);
     }catch(err){
-        res.status(409).json(err);
+        console.log(err);
+        res.status(500).json({sucess: false, message: "Internal Server Error"});
     }
 }
 

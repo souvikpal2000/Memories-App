@@ -19,3 +19,9 @@
 .active{
     color: white !important;
 }
+.dropdown-toggle, .navbarLink ::after{
+    color: rgb(156, 200, 252) !important;
+}
+hr{
+    color: white !important;
+}
