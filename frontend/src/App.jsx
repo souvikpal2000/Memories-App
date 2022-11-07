@@ -1,9 +1,9 @@
 import React, { useReducer, createContext } from "react";
-import { useLocation } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import Routing from "./Components/Routing";
 import Footer from "./Components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { useState } from "react";
 
 export const UserContext = createContext();
 const initialState = null;
@@ -19,14 +19,13 @@ const reducer = (state, action) => {
 } 
 
 const App = () => {
-	const location = useLocation();
 	const [state, dispatch] = useReducer(reducer, initialState);
 	return(
 		<>	
 			<UserContext.Provider value={{state, dispatch}}>
-                { location.pathname === "/oops" ? null : <Header/> }
+				<Header/> 
                 <Routing/>
-                { location.pathname === "/oops" ? null : <Footer/> }
+                <Footer/>
 			</UserContext.Provider>
 		</>
 	)

@@ -11,16 +11,16 @@ import PageNotFound from "./404/PageNotFound";
 import { UserContext } from "../App";
 import { useEffect } from "react";
 
+
 const Render = ({state}) => {
-    if(!state){ //LoggedOut
+    if(!state){
         return(
             <>
                 <Routes>
                     <Route path="/" element={<Home/>} />
                     <Route path="/signup" element={<Signup/>} />
                     <Route path="/login" element={<Login/>} />
-                    <Route path="*" element={<Navigate to="/oops"/>}/>
-                    <Route path="/oops" element={<PageNotFound/>} />
+                    <Route path="*" element={<PageNotFound/>} />
                 </Routes>
             </>
         )
@@ -32,8 +32,7 @@ const Render = ({state}) => {
                 <Route path="/posts" element={<Posts/>} />
                 <Route path="/profile" element={<Profile/>} />
                 <Route path="/logout" element={<Logout/>} />
-                <Route path="*" element={<Navigate to="/oops"/>}/>
-                <Route path="/oops" element={<PageNotFound/>} />
+                <Route path="*" element={<PageNotFound/>} />
             </Routes>
         </>
     )
