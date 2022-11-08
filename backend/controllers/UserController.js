@@ -51,4 +51,8 @@ const authCheck = (req, res) => {
     res.status(200).json({success: true, message: "Authorized User"});
 }
 
-module.exports = {signupUser, loginUser, logoutUser, authCheck};
+const getProfile = (req, res) => {
+    res.status(200).json({success: true, message: req.rootUser});
+}
+
+module.exports = {signupUser, loginUser, logoutUser, authCheck, getProfile};
