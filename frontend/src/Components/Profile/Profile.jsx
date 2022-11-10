@@ -2,22 +2,23 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
+import AddPostModal from "./AddPostModal";
+import MyPost from "./MyPost";
 import "./style.css";
 
 const Profile = () => {
-    const [state, setState] = useState({
-        spinner: true,
-        profile: null
+    const [spinner, setSpinner] = useState(true);
+    const [profile, setProfile] = useState({
+        fullName: "",
+        userName: "",
+        profilePic: ""
     });
+    const [memories, setMemories] = useState([]);
+    const [addPostModal, setAddPostModal] = useState(false);
 
     const closeSpinnerIn1Seconds = () => {
         setTimeout(() => {
-            setState((preValue) => {
-                return{
-                    ...preValue,
-                    spinner: false
-                }
-            });
+            setSpinner(false);
         }, 1000);
     }
 
@@ -31,12 +32,12 @@ const Profile = () => {
             credentials: "include"
         }).then((res) => {
             res.json().then((data) => {
-                setState((preValue) => {
-                    return{
-                        ...preValue,
-                        profile: data.message
-                    }
-                });
+                const { fullName, userName, profilePic } = data.message;
+                setProfile({
+                    fullName,
+                    userName,
+                    profilePic
+                })
                 closeSpinnerIn1Seconds();
             }); 
         }).catch((err) => {
@@ -44,9 +45,13 @@ const Profile = () => {
         })
     }, []);
 
+    const openAddPostModal = () => {
+        setAddPostModal(true);
+    }
+
     return(
         <>
-            {state.spinner ? 
+            {spinner ? 
             <div className="spinnerContainer">
                     <Spinner animation="border" variant="primary" />
             </div> : 
@@ -54,7 +59,7 @@ const Profile = () => {
                 <div className="profileDetails">
                     <div className="firstDiv">
                         <div className="profilePic">
-                            <img src={state.profile.profilePic.base64} alt={state.profile.profilePic.name} className="picture" />
+                            <img src={profile.profilePic.base64} alt={profile.profilePic.name} className="picture" />
                         </div>
                         <div className="responsiveInfo">
                             <p className="posts"><b>0</b> posts</p>
@@ -66,8 +71,8 @@ const Profile = () => {
                         <div className="responsive">
                             <div className="profileInfo">
                                 <div>
-                                    <h4 className="fullName">{state.profile.fullName}</h4>
-                                    <p className="userName">{state.profile.userName}</p>
+                                    <h4 className="fullName">{profile.fullName}</h4>
+                                    <p className="userName">{profile.userName}</p>
                                     <p className="bio">There's so many words that we could use to describe ourselves, but we find the good ones and remember them.<br/>-Anna Simpson</p>
                                 </div>
                                 <div className="info">
@@ -78,13 +83,17 @@ const Profile = () => {
                             </div>
                             <div className="editButton">
                                 <Button variant="primary" className="edit">Edit</Button>
-                                <Button variant="success" className="add">Add Post</Button>
+                                <Button variant="success" className="add" onClick={openAddPostModal}>Add Post</Button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="horizontalLine"></div>
             </Container>}
+
+            <AddPostModal addPostModal={addPostModal} setAddPostModal={setAddPostModal} memories={memories} setMemories={setMemories}/>
+
+            <MyPost memories={memories} />
         </>
     )
 }
