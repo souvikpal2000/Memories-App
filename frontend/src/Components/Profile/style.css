@@ -6,7 +6,7 @@
 }
 .profileContainer{
     font-family: 'Piazzolla', serif;
-    padding: 2rem 0 2rem 0;
+    padding: 2rem 0 0.5rem 0;
 }
 .profilePic{
     width: 12rem;
@@ -84,6 +84,27 @@ textarea{
     margin-right: 0.75rem;
     cursor: pointer;
 }
+.postsContainer{
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 15rem;
+    grid-gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.imgContainer{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+.post{
+    max-height: 100%;
+}
 
 @media (max-width: 768px) {
     .responsive{
@@ -132,6 +153,10 @@ textarea{
         width: 95% !important;
         right: 0;
         margin: auto;
+    }
+    .postsContainer{
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 10rem;
     }
 }
 
