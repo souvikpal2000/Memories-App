@@ -89,11 +89,9 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="horizontalLine"></div>
-            </Container>}
-
-            <AddPostModal addPostModal={addPostModal} setAddPostModal={setAddPostModal} memories={memories} setMemories={setMemories}/>
-
-            <MyPost memories={memories} />
+                <AddPostModal addPostModal={addPostModal} setAddPostModal={setAddPostModal} memories={memories} setMemories={setMemories}/>
+                <MyPost memories={memories} />
+            </Container>}      
         </>
     )
 }
