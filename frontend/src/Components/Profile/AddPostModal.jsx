@@ -8,7 +8,7 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
     const [post, setPost] = useState({
         caption: "",
         imageDetails: "",
-        createdAt: new Date()
+        createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
     });
 
     const closeAddPostModal = () => {
