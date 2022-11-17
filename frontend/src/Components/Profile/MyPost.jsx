@@ -2,8 +2,23 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import { HandThumbsUpFill, ChatFill } from "react-bootstrap-icons";
 import NoPostsYet from "../../images/nopostsyet.jpg";
+import ViewPostModal from "./ViewPostModal";
+import { useState } from "react";
 
 const MyPost = ({memories}) => {
+    const [modal, setModal] = useState({
+        open: false,
+        memory: {}
+    });
+
+    const openModal = (e) => {
+        const index = e.currentTarget.getAttribute("memoryid");
+        setModal({
+            open: true,
+            memory: memories[index]
+        })
+    }
+
     return(
         <>
             <Container>
@@ -16,16 +31,16 @@ const MyPost = ({memories}) => {
                         return(
                             <div key={index} className="imgContainer">
                                 <img src={memory.imageDetails.base64} alt={memory.imageDetails.name} className="post"/>
-                                <div class="overlay">
+                                <div className="overlay" memoryid={index} onClick={openModal}>
                                     <div className="likeComment">
                                         <div className="likeContainer">
                                             <HandThumbsUpFill className="like"/>
-                                            <p>0</p>
+                                            <p>{memory.likes.length}</p>
                                         </div> 
                                         <span className="break"></span>
                                         <div className="commentContainer">
                                             <ChatFill className="comment"/>
-                                            <p>0</p>
+                                            <p>{memory.comments.length}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -34,6 +49,8 @@ const MyPost = ({memories}) => {
                     })}
                 </div>}
             </Container>
+
+            <ViewPostModal modal={modal} setModal={setModal}/>
         </>
     )
 }

@@ -7,7 +7,9 @@ import FileBase64 from "react-file-base64";
 const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) => {
     const [post, setPost] = useState({
         caption: "",
-        imageDetails: "",
+        imageDetails: {},
+        likes: [],
+        comments: [],
         createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
     });
 
