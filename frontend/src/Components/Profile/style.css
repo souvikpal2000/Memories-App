@@ -166,23 +166,47 @@ textarea{
     width: 15rem;
     pointer-events: none;
 }
-/* .viewModal{
-    right: 0;
-    margin: auto;
-} */
-.viewModal{
-    height: 0vh
-}
 .postContainer{
+    height: 100%;
     max-width: 100% !important;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.postImgContainer, .commentContainer{
-    width: 50%;
+.postImgContainer, .commentsContainer{
+    height: 100vh;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postImgContainer{
+    width: 60%;
+    background-color: black;
 }
 .postImgContainer img{
+    max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+}
+.viewModal .modal-body{
+    padding: 0rem !important;
+}
+.commentsContainer{
+    padding: 0.5rem;
+    display: block;
+}
+.closeBtn{
+    cursor: pointer;
+}
+.commentsContainer h6{
+    margin: 0rem;
+}
+.captionReplyContainer{
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 @media (max-width: 768px) {
@@ -228,11 +252,6 @@ textarea{
     .profileInfo{
         padding-right: 0rem;
     }
-    .viewModal{
-        width: 95% !important;
-        right: 0;
-        margin: auto;
-    }
     .postsContainer{
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 10rem;
@@ -240,11 +259,14 @@ textarea{
     .likeComment{
         font-size: 1rem;
     }
-    .postImgContainer, .commentContainer{
+    .postImgContainer, .commentsContainer{
         width: 100%;
     }
     .postContainer{
         flex-direction: column;
+    }
+    .border{
+        margin: 0rem;
     }
 }
 

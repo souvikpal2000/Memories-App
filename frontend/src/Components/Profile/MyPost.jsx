@@ -5,7 +5,7 @@ import NoPostsYet from "../../images/nopostsyet.jpg";
 import ViewPostModal from "./ViewPostModal";
 import { useState } from "react";
 
-const MyPost = ({memories}) => {
+const MyPost = ({memories, profile}) => {
     const [modal, setModal] = useState({
         open: false,
         memory: {}
@@ -50,7 +50,7 @@ const MyPost = ({memories}) => {
                 </div>}
             </Container>
 
-            <ViewPostModal modal={modal} setModal={setModal}/>
+            <ViewPostModal modal={modal} setModal={setModal} profile={profile} />
         </>
     )
 }
