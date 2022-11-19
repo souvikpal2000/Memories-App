@@ -202,11 +202,37 @@ textarea{
 .commentsContainer h6{
     margin: 0rem;
 }
-.captionReplyContainer{
+.captionContainer{
     padding: 16px;
+}
+.captionContainer p{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+}
+.replyFormContainer{
+    padding: 16px;
+}
+.replyContainer{
+    height: 65% !important;
+    overflow: scroll;
+}
+.replyContainer::-webkit-scrollbar {
+    display: none;
+}
+.like{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+.noCommentsContainer{
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+.noCommentsContainer img{
+    width: 80%;
 }
 
 @media (max-width: 768px) {
@@ -261,12 +287,22 @@ textarea{
     }
     .postImgContainer, .commentsContainer{
         width: 100%;
+        min-height: 40%;
+    }
+    .postImgContainer{
+        max-height: 60%;
     }
     .postContainer{
         flex-direction: column;
     }
     .border{
         margin: 0rem;
+    }
+    .captionContainer p{
+        font-size: 1rem;
+    }
+    .noCommentsContainer img{
+        width: 70%;
     }
 }
 

@@ -1,12 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { HandThumbsUp, HandThumbsUpFill, SendFill } from "react-bootstrap-icons"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
+import NoComments from "../../images/nocomment.jpg";
 
 const ViewPostModal = ({modal, setModal, profile}) => {
     const [fullscreen, setFullscreen] = useState(true);
+    const [like, setLike] = useState(false);
 
     const closeModal = () => {
         setModal({
@@ -28,11 +30,24 @@ const ViewPostModal = ({modal, setModal, profile}) => {
                                 <h6>{profile.userName}</h6>
                                 <p onClick={closeModal} className="closeBtn">❌</p>
                             </Modal.Header>
-                            <div className="captionReplyContainer">
-                            <InputGroup className="mb-3">
-                                <Form.Control placeholder="Add a comment..." aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                                <Button variant="primary" id="button-addon2">Post</Button>
-                            </InputGroup>
+                            <div className="captionContainer">
+                                <p>{modal.memory?.caption}</p>
+                            </div>
+                            <div className="replyContainer">
+                                {modal.memory?.comments?.length === 0? 
+                                <div className="noCommentsContainer">
+                                    <img src={NoComments} alt="No Comments" />
+                                </div> : 
+                                <div className="repliesContainer">
+                                    
+                                </div>}
+                            </div>
+                            <div className="replyFormContainer">
+                                {like? <HandThumbsUpFill className="like" onClick={() => setLike(false)}/> : <HandThumbsUp className="like" onClick={() => setLike(true)} />}
+                                <InputGroup className="mb-3">
+                                    <Form.Control placeholder="Add a comment..." />
+                                    <Button variant="primary"><SendFill/></Button>
+                                </InputGroup>
                             </div>
                         </div>
                     </div>
