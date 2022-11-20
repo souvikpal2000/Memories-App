@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HandThumbsUp, HandThumbsUpFill, SendFill } from "react-bootstrap-icons"
+import { HandThumbsUp, HandThumbsUpFill, SendFill, TrashFill } from "react-bootstrap-icons"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -17,6 +17,10 @@ const ViewPostModal = ({modal, setModal, profile}) => {
         })
     }
 
+    const deletePost = () => {
+
+    }
+
     return(
         <>
             <Modal fullscreen={fullscreen} animation={false} show={modal.open} contentClassName="viewModal" centered>
@@ -28,19 +32,22 @@ const ViewPostModal = ({modal, setModal, profile}) => {
                         <div className="commentsContainer">
                             <Modal.Header>
                                 <h6>{profile.userName}</h6>
-                                <p onClick={closeModal} className="closeBtn">❌</p>
+                                <div className="deleteClose">
+                                    <TrashFill className="trashBtn" onClick={deletePost}/>
+                                    <p onClick={closeModal} className="closeBtn">❌</p>
+                                </div>
                             </Modal.Header>
                             <div className="captionContainer">
                                 <p>{modal.memory?.caption}</p>
                             </div>
                             <div className="replyContainer">
-                                {modal.memory?.comments?.length === 0? 
+                                { modal.memory?.comments?.length === 0? 
                                 <div className="noCommentsContainer">
                                     <img src={NoComments} alt="No Comments" />
                                 </div> : 
                                 <div className="repliesContainer">
                                     
-                                </div>}
+                                </div> }
                             </div>
                             <div className="replyFormContainer">
                                 {like? <HandThumbsUpFill className="like" onClick={() => setLike(false)}/> : <HandThumbsUp className="like" onClick={() => setLike(true)} />}

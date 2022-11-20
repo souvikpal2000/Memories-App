@@ -15,7 +15,8 @@ const MyPost = ({memories, profile}) => {
         const index = e.currentTarget.getAttribute("memoryid");
         setModal({
             open: true,
-            memory: memories[index]
+            memory: memories[index],
+            id: index
         })
     }
 

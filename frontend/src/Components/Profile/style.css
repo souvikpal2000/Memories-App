@@ -173,16 +173,20 @@ textarea{
     justify-content: center;
     align-items: center;
 }
-.postImgContainer, .commentsContainer{
+.postImgContainer{
     height: 100vh;
-    width: 40%;
+    width: 60%;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.postImgContainer{
-    width: 60%;
-    background-color: black;
+.commentsContainer{
+    height: 100vh;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 0.5rem 0rem 0.5rem;
 }
 .postImgContainer img{
     max-height: 100%;
@@ -191,10 +195,6 @@ textarea{
 }
 .viewModal .modal-body{
     padding: 0rem !important;
-}
-.commentsContainer{
-    padding: 0.5rem;
-    display: block;
 }
 .closeBtn{
     cursor: pointer;
@@ -211,7 +211,8 @@ textarea{
     color: black;
 }
 .replyFormContainer{
-    padding: 16px;
+    margin-top: auto;
+    padding: 0rem 0.5rem 0rem 0.5rem;
 }
 .replyContainer{
     height: 65% !important;
@@ -232,7 +233,18 @@ textarea{
     align-items: center;
 }
 .noCommentsContainer img{
-    width: 80%;
+    width: 70%;
+}
+.deleteClose{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.trashBtn{
+    font-size: 1.2rem;
+    color: red;
+    margin: 0rem 2rem 0rem 0rem;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -285,12 +297,13 @@ textarea{
     .likeComment{
         font-size: 1rem;
     }
-    .postImgContainer, .commentsContainer{
+    .postImgContainer{
+        width: 100%;
+        max-height: 60%;
+    }
+    .commentsContainer{
         width: 100%;
         min-height: 40%;
-    }
-    .postImgContainer{
-        max-height: 60%;
     }
     .postContainer{
         flex-direction: column;
@@ -302,7 +315,14 @@ textarea{
         font-size: 1rem;
     }
     .noCommentsContainer img{
-        width: 70%;
+        width: 60%;
+    }
+    .replyContainer{
+        min-height: 65% !important;
+        overflow: scroll;
+    }
+    .viewModal .modal-body::-webkit-scrollbar {
+        display: none;
     }
 }
 
