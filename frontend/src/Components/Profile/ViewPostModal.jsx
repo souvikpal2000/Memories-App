@@ -1,24 +1,61 @@
 import React, { useState } from "react";
-import { HandThumbsUp, HandThumbsUpFill, SendFill, TrashFill } from "react-bootstrap-icons"
+import { HandThumbsUp, HandThumbsUpFill, SendFill, TrashFill, XCircleFill } from "react-bootstrap-icons"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
 import NoComments from "../../images/nocomment.jpg";
 
-const ViewPostModal = ({modal, setModal, profile}) => {
-    const [fullscreen, setFullscreen] = useState(true);
-    const [like, setLike] = useState(false);
+const DeleteModal = ({showModal, setShowModal, memories, setMemories, setModal}) => {
+    const deletePost = () => {
+        const updatedMemories = memories.filter((memory, index) => {
+            return index != showModal.id
+        });
+        setMemories(updatedMemories);
 
-    const closeModal = () => {
+        setShowModal({
+            open: false,
+            id: ""
+        });
+
         setModal({
             open: false,
             memory: {}
         })
     }
 
-    const deletePost = () => {
+    return(
+        <>
+            <Modal show={showModal.open} onHide={() => setShowModal({open: false, id: ""})}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete Message?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    You'll lose this data after this action. We can't recover them once you delete.
+                    Are you sure you want to <span className="deleteSpan">permanently delete</span> it?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal({open: false, id: ""})}>Close</Button>
+                    <Button variant="danger" onClick={deletePost}>Delete</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
 
+const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
+    const [fullscreen, setFullscreen] = useState(true);
+    const [like, setLike] = useState(false);
+    const [showModal, setShowModal] = useState({
+        open: false,
+        id: ""
+    });
+
+    const closeModal = () => {
+        setModal({
+            open: false,
+            memory: {}
+        })
     }
 
     return(
@@ -33,8 +70,8 @@ const ViewPostModal = ({modal, setModal, profile}) => {
                             <Modal.Header>
                                 <h6>{profile.userName}</h6>
                                 <div className="deleteClose">
-                                    <TrashFill className="trashBtn" onClick={deletePost}/>
-                                    <p onClick={closeModal} className="closeBtn">❌</p>
+                                    <TrashFill className="trashBtn" onClick={() => setShowModal({open: true, id: modal.id})}/>
+                                    <XCircleFill onClick={closeModal} className="closeBtn"/>
                                 </div>
                             </Modal.Header>
                             <div className="captionContainer">
@@ -50,7 +87,7 @@ const ViewPostModal = ({modal, setModal, profile}) => {
                                 </div> }
                             </div>
                             <div className="replyFormContainer">
-                                {like? <HandThumbsUpFill className="like" onClick={() => setLike(false)}/> : <HandThumbsUp className="like" onClick={() => setLike(true)} />}
+                                {like? <HandThumbsUpFill className="likeIcon" onClick={() => setLike(false)}/> : <HandThumbsUp className="likeIcon" onClick={() => setLike(true)} />}
                                 <InputGroup className="mb-3">
                                     <Form.Control placeholder="Add a comment..." />
                                     <Button variant="primary"><SendFill/></Button>
@@ -60,6 +97,8 @@ const ViewPostModal = ({modal, setModal, profile}) => {
                     </div>
                 </Modal.Body>
             </Modal>
+
+            <DeleteModal showModal={showModal} setShowModal={setShowModal} memories={memories} setMemories={setMemories} setModal={setModal} />
         </>
     )
 }
