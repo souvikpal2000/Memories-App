@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
-import NoComments from "../../images/nocomment.jpg";
 
 const DeleteModal = ({showModal, setShowModal, memories, setMemories, setModal}) => {
     const deletePost = () => {
@@ -80,7 +79,8 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                             <div className="replyContainer">
                                 { modal.memory?.comments?.length === 0? 
                                 <div className="noCommentsContainer">
-                                    <img src={NoComments} alt="No Comments" />
+                                    <h1>No comments yet.</h1>
+                                    <p>Start the conversation</p>
                                 </div> : 
                                 <div className="repliesContainer">
                                     

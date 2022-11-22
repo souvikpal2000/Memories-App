@@ -192,6 +192,7 @@ textarea{
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+    pointer-events: none;
 }
 .viewModal .modal-body{
     padding: 0rem !important;
@@ -229,8 +230,12 @@ textarea{
 .noCommentsContainer{
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.noCommentsContainer p {
+    color: grey;
 }
 .noCommentsContainer img{
     width: 70%;
@@ -254,6 +259,9 @@ textarea{
 }
 .deleteSpan{
     color: red;
+}
+.viewModal{
+    font-family: 'Piazzolla', serif;
 }
 
 @media (max-width: 768px) {
