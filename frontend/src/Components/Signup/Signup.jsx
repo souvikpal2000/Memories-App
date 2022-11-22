@@ -148,10 +148,18 @@ const Signup = () => {
 
     const submitForm = async (e) => {
         e.preventDefault();
+        const pass = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
         if(userInfo.password !== userInfo.conPassword){
             setAlert({
                 type: "danger",
                 message: "Password doesn't Match"
+            });
+            return;
+        }
+        if(userInfo.password.match(pass) === null){
+            setAlert({
+                type: "danger",
+                message: "Enter a Valid Password"
             });
             return;
         }
