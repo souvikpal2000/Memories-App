@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import FileBase64 from "react-file-base64";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import FileBase64 from "react-file-base64";
+import Alert from 'react-bootstrap/Alert';
 
 const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) => {
     const [post, setPost] = useState({
@@ -12,12 +13,29 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
         comments: [],
         createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
     });
+    const [alert, setAlert] = useState("");
 
     const closeAddPostModal = () => {
         setAddPostModal(false);
+        setAlert("")
+        setPost({
+            caption: "",
+            imageDetails: {},
+            likes: [],
+            comments: [],
+            createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
+        })
     }
 
     const uploadImage = (base64) => {
+        const fileType = ['image/jpeg', 'image/png'];
+        if(fileType.includes(base64.type) === false){
+            setAlert({
+                type: "danger",
+                message: "Supported File Type - jpeg/png"
+            })
+            return;
+        }
         setPost((preValue) => {
             return {
                 ...preValue,
@@ -27,10 +45,25 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
     }
 
     const savePost = () => {
+        if(Object.keys(post.imageDetails).length === 0){
+            setAlert({
+                type: "warning",
+                message: "Upload Image"
+            })
+            return;
+        }
         setAddPostModal(false);
         let newMemories = memories;
         memories.push(post);
         setMemories(newMemories);
+
+        setPost({
+            caption: "",
+            imageDetails: {},
+            likes: [],
+            comments: [],
+            createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
+        })
     }
 
     return(
@@ -40,6 +73,12 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
                     <Modal.Title>Add New Post</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {   
+                        alert && 
+                        <Alert variant={alert.type} onClose={() => setAlert("")} dismissible>
+                            <p>{alert.message}</p>
+                        </Alert>
+                    }
                     <Form className="addPostForm">
                         <Form.Group className="mb-3">
                             <Form.Label>Caption</Form.Label>
