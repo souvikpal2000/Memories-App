@@ -44,7 +44,6 @@ const DeleteModal = ({showModal, setShowModal, memories, setMemories, setModal})
 
 const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
     const [fullscreen, setFullscreen] = useState(true);
-    const [like, setLike] = useState(false);
     const [showModal, setShowModal] = useState({
         open: false,
         id: ""
@@ -54,6 +53,33 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
         setModal({
             open: false,
             memory: {}
+        })
+    }
+
+    const likePost = () => {
+        const updatedMemories = memories.map((memory, index) => {
+            return index == modal.id? 
+            {   ...memory, 
+                likes: memory.likes.includes(profile.userName) === false? [
+                    ...memory.likes,
+                    profile.userName
+                ] : memory.likes.filter(userName => userName != profile.userName) 
+            } : 
+            memory
+        });
+        setMemories(updatedMemories);
+
+        setModal((preValue) => {
+            return{
+                ...preValue,
+                memory: {
+                    ...preValue.memory,
+                    likes: {...preValue}.memory.likes.includes(profile.userName) === false? [
+                        ...preValue.memory.likes,
+                        profile.userName
+                    ] : {...preValue}.memory.likes.filter(userName => userName != profile.userName)
+                }
+            }
         })
     }
 
@@ -87,8 +113,12 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                                 </div> }
                             </div>
                             <div className="replyFormContainer">
-                                {like? <HandThumbsUpFill className="likeIcon" onClick={() => setLike(false)}/> : <HandThumbsUp className="likeIcon" onClick={() => setLike(true)} />}
-                                <InputGroup className="mb-3">
+                                {   
+                                    {...modal}.memory?.likes?.includes(profile.userName)? 
+                                    <HandThumbsUpFill className="likeIcon" onClick={likePost}/> : 
+                                    <HandThumbsUp className="likeIcon" onClick={likePost} />
+                                }
+                                <InputGroup className="mb-3"> 
                                     <Form.Control placeholder="Add a comment..." />
                                     <Button variant="primary"><SendFill/></Button>
                                 </InputGroup>
