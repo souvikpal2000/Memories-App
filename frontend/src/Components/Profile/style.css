@@ -128,9 +128,6 @@ textarea{
     opacity: 0;
     cursor: pointer;
 }
-.nopostsyet img{
-    width: 15rem !important;
-}
 .likeComment{
     font-size: 1.3rem;
     font-weight: bold;
@@ -340,6 +337,12 @@ textarea{
     }
     .viewModal .modal-body::-webkit-scrollbar {
         display: none;
+    }
+    .likeIcon{
+        font-size: 1.3rem;
+    }
+    .nopostsyet img{
+        width: 13rem;
     }
 }
 
