@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,8 +8,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Alert from 'react-bootstrap/Alert';
 import FileBase64 from "react-file-base64";
 import SignupPic from "../../images/signup.jpg";
-import ShowPasswordIcon from "../../images/showPassword.png";
-import HidePasswordIcon from "../../images/hidePassword.png";
 import DefaultProfilePic from "../../images/defaultprofilepic.jpg";
 import './style.css';
 
@@ -134,7 +133,7 @@ const Signup = () => {
     }
 
     const changeVisibility = (e) => {
-        const name = e.target.name;
+        const name = e.currentTarget.getAttribute("name");
         setShowPassword((preValue) => {
             return{
                 ...preValue,
@@ -243,10 +242,10 @@ const Signup = () => {
                                             <Form.Control type={showPassword.password.type} name="password" value={userInfo.password} onChange={setInfo} className={passwordValidation.password} required />
                                             { showPassword.password.show === false?  
                                             <InputGroup.Text>
-                                                <img src={ShowPasswordIcon} className="showPasswordIcon" alt="ShowPasswordIcon" name="password" onClick={changeVisibility} />
+                                                <EyeFill className="showPasswordIcon" name="password" onClick={changeVisibility} />
                                             </InputGroup.Text> : 
                                             <InputGroup.Text>
-                                                <img src={HidePasswordIcon} className="hidePasswordIcon" alt="HidePasswordIcon" name="password" onClick={changeVisibility} />
+                                                <EyeSlashFill className="hidePasswordIcon" name="password" onClick={changeVisibility} />
                                             </InputGroup.Text> }
                                         </InputGroup>
                                     </Col>
@@ -258,10 +257,10 @@ const Signup = () => {
                                             <Form.Control type={showPassword.conPassword.type} name="conPassword" value={userInfo.conPassword} onChange={setInfo} className={passwordValidation.conPassword} required />
                                             { showPassword.conPassword.show === false?  
                                             <InputGroup.Text>
-                                                <img src={ShowPasswordIcon} className="showPasswordIcon" alt="ShowPasswordIcon" name="conPassword" onClick={changeVisibility} />
+                                                <EyeFill className="showPasswordIcon" name="conPassword" onClick={changeVisibility} />
                                             </InputGroup.Text> : 
                                             <InputGroup.Text>
-                                                <img src={HidePasswordIcon} className="hidePasswordIcon" alt="HidePasswordIcon" name="conPassword" onClick={changeVisibility} />
+                                                <EyeSlashFill className="hidePasswordIcon" name="conPassword" onClick={changeVisibility} />
                                             </InputGroup.Text> }
                                         </InputGroup>
                                     </Col>

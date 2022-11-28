@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,8 +9,6 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Alert from 'react-bootstrap/Alert';
 import LoginImg from "../../images/login.jpg";
-import ShowPasswordIcon from "../../images/showPassword.png";
-import HidePasswordIcon from "../../images/hidePassword.png";
 import { UserContext } from "../../App";
 import "./style.css";
 
@@ -117,10 +116,10 @@ const Login = () => {
                                         <Form.Control type={showPassword.type} name="password" value={loginInfo.password} onChange={setInfo} required />
                                         { showPassword.show === false?  
                                             <InputGroup.Text>
-                                                <img src={ShowPasswordIcon} className="showPasswordIcon" alt="ShowPasswordIcon" onClick={changeVisibility} />
+                                                <EyeFill className="showPasswordIcon" alt="ShowPasswordIcon" onClick={changeVisibility} />
                                             </InputGroup.Text> : 
                                             <InputGroup.Text>
-                                                <img src={HidePasswordIcon} className="hidePasswordIcon" alt="HidePasswordIcon" onClick={changeVisibility} />
+                                                <EyeSlashFill className="hidePasswordIcon" alt="HidePasswordIcon" onClick={changeVisibility} />
                                             </InputGroup.Text> }
                                     </InputGroup>
                                 </Col>
