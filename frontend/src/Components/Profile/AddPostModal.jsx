@@ -13,18 +13,31 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
         comments: [],
         createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
     });
+    const [captionCounter, setCaptionCounter] = useState(0);
     const [alert, setAlert] = useState("");
 
     const closeAddPostModal = () => {
         setAddPostModal(false);
-        setAlert("")
+        setAlert("");
         setPost({
             caption: "",
             imageDetails: {},
             likes: [],
             comments: [],
             createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
-        })
+        });
+        setCaptionCounter(0);
+    }
+
+    const setCaption = (e) => {
+        const length = e.target.value.length
+        if(length <= 120){
+            setPost({
+                ...post, 
+                [e.target.name]: e.target.value
+            });
+            setCaptionCounter(length);
+        }
     }
 
     const uploadImage = (base64) => {
@@ -82,7 +95,8 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
                     <Form className="addPostForm">
                         <Form.Group className="mb-3">
                             <Form.Label>Caption</Form.Label>
-                            <Form.Control as="textarea" rows={3} name="caption" onChange={(e) => setPost({...post, [e.target.name]: e.target.value})}/>
+                            <Form.Control as="textarea" rows={3} name="caption" value={post.caption} onChange={setCaption}/>
+                            <span className="countLabel">{captionCounter} / 120</span>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Image</Form.Label>
