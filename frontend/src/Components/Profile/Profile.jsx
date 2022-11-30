@@ -62,7 +62,7 @@ const Profile = () => {
                             <img src={profile.profilePic.base64} alt={profile.profilePic.name} className="picture" />
                         </div>
                         <div className="responsiveInfo">
-                            <p className="posts"><b>0</b> posts</p>
+                            <p className="posts"><b>{memories.length}</b> posts</p>
                             <p className="followers"><b>0</b> followers</p>
                             <p className="following"><b>0</b> following</p>
                         </div>
@@ -76,7 +76,7 @@ const Profile = () => {
                                     <p className="bio">There's so many words that we could use to describe ourselves, but we find the good ones and remember them.<br/>-Anna Simpson</p>
                                 </div>
                                 <div className="info">
-                                    <p className="posts"><b>0</b> posts</p>
+                                    <p className="posts"><b>{memories.length}</b> posts</p>
                                     <p className="followers"><b>0</b> followers</p>
                                     <p className="following"><b>0</b> following</p>
                                 </div>
