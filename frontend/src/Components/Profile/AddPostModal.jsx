@@ -11,7 +11,7 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
         imageDetails: {},
         likes: [],
         comments: [],
-        createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
+        createdAt: ""
     });
     const [captionCounter, setCaptionCounter] = useState(0);
     const [alert, setAlert] = useState("");
@@ -24,7 +24,7 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
             imageDetails: {},
             likes: [],
             comments: [],
-            createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
+            createdAt: ""
         });
         setCaptionCounter(0);
     }
@@ -52,7 +52,8 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
         setPost((preValue) => {
             return {
                 ...preValue,
-                imageDetails: base64
+                imageDetails: base64,
+                createdAt: new Date()
             }
         });
     }
@@ -75,7 +76,7 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
             imageDetails: {},
             likes: [],
             comments: [],
-            createdAt: new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
+            createdAt: ""
         })
     }
 
