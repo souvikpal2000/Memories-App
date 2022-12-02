@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from 'moment';
 import { HandThumbsUp, HandThumbsUpFill, SendFill, TrashFill, XCircleFill } from "react-bootstrap-icons"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -48,12 +49,25 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
         open: false,
         id: ""
     });
+    const [comment, setComment] = useState({
+        userName: profile.userName,
+        msg: "",
+        createdAt: ""
+    });
 
     const closeModal = () => {
         setModal({
             open: false,
             memory: {}
-        })
+        });
+
+        setComment((preValue) => {
+            return{
+                ...preValue,
+                msg: "",
+                createdAt: ""
+            }
+        });
     }
 
     const likePost = () => {
@@ -83,6 +97,41 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
         })
     }
 
+    const addComment = () => {
+        const updatedMemories = memories.map((memory, index) => {
+            return index == modal.id? 
+            {
+                ...memory,
+                comments: [
+                    ...memory.comments,
+                    comment
+                ]
+            } : memory
+        });
+        setMemories(updatedMemories);
+
+        setModal((preValue) => {
+            return{
+                ...preValue,
+                memory: {
+                    ...preValue.memory,
+                    comments: [
+                        ...preValue.memory.comments,
+                        comment
+                    ]
+                }
+            }
+        });
+
+        setComment((preValue) => {
+            return{
+                ...preValue,
+                msg: "",
+                createdAt: ""
+            }
+        });
+    }
+
     return(
         <>
             <Modal fullscreen={fullscreen} animation={false} show={modal.open} contentClassName="viewModal" centered>
@@ -101,6 +150,7 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                             </Modal.Header>
                             <div className="captionContainer">
                                 <p>{modal.memory?.caption}</p>
+                                <p className="createdAt">{moment(modal.memory.createdAt).fromNow()}</p>
                             </div>
                             <div className="replyContainer">
                                 { modal.memory?.comments?.length === 0? 
@@ -119,8 +169,8 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                                     <HandThumbsUp className="likeIcon" onClick={likePost} />
                                 }
                                 <InputGroup className="mb-3"> 
-                                    <Form.Control placeholder="Add a comment..." />
-                                    <Button variant="primary"><SendFill/></Button>
+                                    <Form.Control placeholder="Add a comment..." value={comment.msg} onChange={(e) => setComment((preValue) => { return { ...preValue, msg: e.target.value, createdAt: new Date() } })}/>
+                                    <Button variant="primary" onClick={addComment}><SendFill/></Button>
                                 </InputGroup>
                             </div>
                         </div>
