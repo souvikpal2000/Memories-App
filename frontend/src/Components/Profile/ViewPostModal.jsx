@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import moment from 'moment';
-import { HandThumbsUp, HandThumbsUpFill, SendFill, TrashFill, XCircleFill } from "react-bootstrap-icons"
+import { HandThumbsUp, HandThumbsUpFill, SendFill, PencilSquare, TrashFill, XCircleFill } from "react-bootstrap-icons"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
+import CommentCard from "./CommentCard";
 
 const DeleteModal = ({showModal, setShowModal, memories, setMemories, setModal}) => {
     const deletePost = () => {
@@ -97,7 +98,12 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
         })
     }
 
-    const addComment = () => {
+    const addComment = (e) => {
+        e.preventDefault();
+        if(comment.msg === ""){
+            return;
+        }
+
         const updatedMemories = memories.map((memory, index) => {
             return index == modal.id? 
             {
@@ -142,8 +148,9 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                         </div>
                         <div className="commentsContainer">
                             <Modal.Header>
-                                <h6>{profile.userName}</h6>
+                                <h6><b>{profile.userName}</b></h6>
                                 <div className="deleteClose">
+                                    <PencilSquare className="editIcon"/>
                                     <TrashFill className="trashBtn" onClick={() => setShowModal({open: true, id: modal.id})}/>
                                     <XCircleFill onClick={closeModal} className="closeBtn"/>
                                 </div>
@@ -159,7 +166,9 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                                     <p>Start the conversation</p>
                                 </div> : 
                                 <div className="repliesContainer">
-                                    
+                                    {modal.memory?.comments?.map((comment, index) => {
+                                        return <CommentCard key={index} comment={comment} />
+                                    })}
                                 </div> }
                             </div>
                             <div className="replyFormContainer">
@@ -168,10 +177,12 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                                     <HandThumbsUpFill className="likeIcon" onClick={likePost}/> : 
                                     <HandThumbsUp className="likeIcon" onClick={likePost} />
                                 }
-                                <InputGroup className="mb-3"> 
-                                    <Form.Control placeholder="Add a comment..." value={comment.msg} onChange={(e) => setComment((preValue) => { return { ...preValue, msg: e.target.value, createdAt: new Date() } })}/>
-                                    <Button variant="primary" onClick={addComment}><SendFill/></Button>
-                                </InputGroup>
+                                <form onSubmit={addComment}>
+                                    <InputGroup className="mb-3"> 
+                                        <Form.Control placeholder="Add a comment..." value={comment.msg} onChange={(e) => setComment((preValue) => { return { ...preValue, msg: e.target.value, createdAt: new Date() } })}/>
+                                        <Button type="submit" variant="primary"><SendFill/></Button>
+                                    </InputGroup>
+                                </form>
                             </div>
                         </div>
                     </div>
