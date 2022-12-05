@@ -70,6 +70,7 @@ const Login = () => {
     
             if(data.success){
                 auth();
+                Cookies.set('loggedInModal', 'open');
                 navigate("/");
             }else{
                 setAlert({
