@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { HandThumbsUpFill, ChatFill } from "react-bootstrap-icons";
-import NoPostsYet from "../../images/nopostsyet.jpg";
+import { Camera, HandThumbsUpFill, ChatFill } from "react-bootstrap-icons";
 import ViewPostModal from "./ViewPostModal";
 import { useState } from "react";
 
@@ -25,7 +24,10 @@ const MyPost = ({memories, setMemories, profile}) => {
             <Container>
                 {memories.length === 0? 
                 <div className="nopostsyet">
-                    <img src={NoPostsYet} alt="NoPostsYet" />
+                    <div className="cameraCircle">
+                        <Camera className="camera"/>
+                    </div>
+                    <h2>No Posts Yet</h2>
                 </div> : 
                 <div className="postsContainer">
                     {memories.map((memory, index) => {
