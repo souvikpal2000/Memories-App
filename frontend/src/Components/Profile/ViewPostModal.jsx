@@ -44,12 +44,32 @@ const DeleteModal = ({showModal, setShowModal, memories, setMemories, setModal})
     )
 }
 
+const CaptionModal = ({showCaptionModal, setShowCaptionModal}) => {
+    return(
+        <>
+            <Modal show={showCaptionModal} centered>
+                <Form className="captionForm">
+                    <Form.Group className="mb-3">
+                        <Form.Control as="textarea" rows={3} name="caption"/>
+                        <span className="countLabel">0 / 120</span>
+                    </Form.Group>
+                    <div className="formButtons">
+                        <Button variant="secondary" className="closeBtn" onClick={() => setShowCaptionModal(false)}>Close</Button>
+                        <Button type="submit" variant="primary">Save</Button>
+                    </div>
+                </Form>
+            </Modal>
+        </>
+    )
+}
+
 const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
     const [fullscreen, setFullscreen] = useState(true);
     const [showModal, setShowModal] = useState({
         open: false,
         id: ""
     });
+    const [showCaptionModal, setShowCaptionModal] = useState(false);
     const [comment, setComment] = useState({
         userName: profile.userName,
         msg: "",
@@ -150,7 +170,7 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
                             <Modal.Header>
                                 <h6><b>{profile.userName}</b></h6>
                                 <div className="deleteClose">
-                                    <PencilSquare className="editIcon"/>
+                                    <PencilSquare className="editIcon" onClick={() => setShowCaptionModal(true)}/>
                                     <TrashFill className="trashBtn" onClick={() => setShowModal({open: true, id: modal.id})}/>
                                     <XCircleFill onClick={closeModal} className="closeBtn"/>
                                 </div>
@@ -190,6 +210,7 @@ const ViewPostModal = ({modal, setModal, profile, memories, setMemories}) => {
             </Modal>
 
             <DeleteModal showModal={showModal} setShowModal={setShowModal} memories={memories} setMemories={setMemories} setModal={setModal} />
+            <CaptionModal showCaptionModal={showCaptionModal} setShowCaptionModal={setShowCaptionModal}/>
         </>
     )
 }

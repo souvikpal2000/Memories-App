@@ -297,6 +297,21 @@ textarea{
 .moment{
     font-size: 0.8rem !important;
 }
+.captionForm{
+    padding: 1rem;
+}
+.formButtons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.formButtons .closeBtn{
+    margin-right: 0.5rem;
+}
+.fade{
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
 @media (max-width: 768px) {
     .responsive{
