@@ -136,8 +136,11 @@
         padding: 0.5rem 1.5rem;
     }
     .confirmationModal{
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+    .confirm{
         width: 90% !important;
-        right: 0;
-        margin: auto;
     }
 }

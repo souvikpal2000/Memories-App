@@ -61,7 +61,7 @@ const Home = () => {
                 </Row>
             </Container>
 
-            <Modal show={showModal} backdrop="static" keyboard={false} centered className="confirmationModal">
+            <Modal show={showModal} backdrop="static" keyboard={false} centered className="confirmationModal" dialogClassName="confirm">
                 <Modal.Body className="tickContainer">
                     <div className="tick">
                         <svg className="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> 
