@@ -304,13 +304,14 @@ textarea{
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .formButtons .closeBtn{
     margin-right: 0.5rem;
 }
 .fade{
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    /* backdrop-filter: blur(2px) !important; */ /* Cause Lagging Issue😣 */
 }
 
 @media (max-width: 768px) {
