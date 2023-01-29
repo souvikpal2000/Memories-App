@@ -68,7 +68,10 @@ const AddPostModal = ({addPostModal, setAddPostModal, memories, setMemories}) =>
         }
         setAddPostModal(false);
         let newMemories = memories;
-        memories.push(post);
+        newMemories.push(post);
+        newMemories.sort((a,b) => {
+            return b.createdAt - a.createdAt;
+        });
         setMemories(newMemories);
 
         setPost({
